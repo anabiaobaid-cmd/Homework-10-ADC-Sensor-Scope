@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mochi's Virtual Pet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="state-start">
+  <!-- Animated Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <main id="game-container">
+    <header id="game-header">
+      <div id="header-top-row">
+        <div>
+          <h1 id="game-title">Mochi's Virtual Pet</h1>
+          <p id="game-subtitle">An Enchanted Forest Companion</p>
+        </div>
+
+        <!-- Top-Right Audio Controls & Score Panel -->
+        <div id="top-controls-panel">
+          <div id="audio-controls" aria-label="Audio controls">
+            <button id="btn-mute" class="btn btn-icon" type="button" title="Toggle Master Mute (M)">
+              <span id="mute-icon">🔊</span>
+            </button>
+            <div class="slider-group" title="Ambience Volume">
+              <label for="slider-ambience" class="slider-label">🌲</label>
+              <input type="range" id="slider-ambience" min="0" max="1" step="0.05" value="0.3" class="pixel-slider">
+            </div>
+            <div class="slider-group" title="SFX Volume">
+              <label for="slider-sfx" class="slider-label">✨</label>
+              <input type="range" id="slider-sfx" min="0" max="1" step="0.05" value="0.6" class="pixel-slider">
+            </div>
+          </div>
+          <div id="score-panel">
+            <span class="score-label">Score:</span>
+            <span id="score-value">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Start Overlay / Screen -->
+    <section id="start-screen" class="state-view">
+      <div class="screen-card">
+        <h2>Welcome to the Enchanted Forest</h2>
+        <p>Mochi the bunny needs your gentle care in the mysterious woods.</p>
+        <p class="controls-overview">
+          Use the on-screen buttons or keyboard shortcuts:<br>
+          <strong>[W]</strong> Feed &bull; <strong>[A]</strong> Play &bull; <strong>[S]</strong> Sleep &bull; <strong>[D]</strong> Clean<br>
+          <strong>[M]</strong> Toggle Mute
+        </p>
+        <button id="btn-start" class="btn btn-primary" type="button">Start Session</button>
+      </div>
+    </section>
+
+    <!-- Active Game Layout -->
+    <section id="game-arena" class="state-view">
+      <!-- Stage 4: Away Time Return Notification Toast -->
+      <div id="away-notification" class="away-toast" style="display:none;" role="status">
+        <span id="away-text"></span>
+        <button id="btn-dismiss-away" class="btn-toast-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <!-- Avatar & Expression Section with Pixel Canvas & Particles -->
+      <div id="avatar-section">
+        <div id="mochi-avatar-container">
+          <!-- 32x32 Virtual Pixel Canvas scaled crisply -->
+          <canvas id="mochi-canvas" width="32" height="32" aria-label="Mochi the pixel bunny"></canvas>
+          <!-- Floating Action Particles Canvas Overlay -->
+          <canvas id="particle-canvas" width="160" height="160" aria-hidden="true"></canvas>
+        </div>
+        <div id="expression-display">
+          <span id="expression-icon">😊</span>
+          <span id="expression-text">Mochi is happy!</span>
+        </div>
+        <div id="status-message-display">
+          <p id="status-message">Mochi is happy and healthy!</p>
+        </div>
+      </div>
+
+      <!-- Status Bars Section -->
+      <div id="bars-section">
+        <!-- Derived Health Bar -->
+        <div class="bar-group health-group">
+          <div class="bar-header">
+            <span class="bar-title"><span class="bar-icon">❤</span> Health</span>
+            <span id="health-value" class="bar-value">100 / 100</span>
+          </div>
+          <div id="health-bar" class="bar-container">
+            <div class="bar-fill bar-healthy"></div>
+          </div>
+        </div>
+
+        <!-- 4 Primary Needs -->
+        <div class="bar-group">
+          <div class="bar-header">
+            <span class="bar-title">Hunger</span>
+            <span id="hunger-value" class="bar-value">100 / 100</span>
+          </div>
+          <div id="hunger-bar" class="bar-container">
+            <div class="bar-fill bar-healthy"></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-header">
+            <span class="bar-title">Happiness</span>
+            <span id="happiness-value" class="bar-value">100 / 100</span>
+          </div>
+          <div id="happiness-bar" class="bar-container">
+            <div class="bar-fill bar-healthy"></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-header">
+            <span class="bar-title">Energy</span>
+            <span id="energy-value" class="bar-value">100 / 100</span>
+          </div>
+          <div id="energy-bar" class="bar-container">
+            <div class="bar-fill bar-healthy"></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-header">
+            <span class="bar-title">Cleanliness</span>
+            <span id="cleanliness-value" class="bar-value">100 / 100</span>
+          </div>
+          <div id="cleanliness-bar" class="bar-container">
+            <div class="bar-fill bar-healthy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Care Action Buttons -->
+      <div id="actions-section">
+        <button id="btn-feed" class="btn btn-action" type="button" data-action="feed">
+          <span class="btn-label">Feed</span>
+          <span class="btn-key">[W]</span>
+        </button>
+        <button id="btn-play" class="btn btn-action" type="button" data-action="play">
+          <span class="btn-label">Play</span>
+          <span class="btn-key">[A]</span>
+        </button>
+        <button id="btn-sleep" class="btn btn-action" type="button" data-action="sleep">
+          <span class="btn-label">Sleep</span>
+          <span class="btn-key">[S]</span>
+        </button>
+        <button id="btn-clean" class="btn btn-action" type="button" data-action="clean">
+          <span class="btn-label">Clean</span>
+          <span class="btn-key">[D]</span>
+        </button>
+      </div>
+
+      <!-- Wardrobe & Toys Collapsible Drawer -->
+      <div id="customization-section">
+        <button id="btn-toggle-wardrobe" class="btn btn-toggle" type="button" aria-expanded="false">
+          ▼ Wardrobe & Toys
+        </button>
+        <div id="wardrobe-drawer" class="drawer-closed">
+          <div class="drawer-column">
+            <h4>Outfits & Hats</h4>
+            <div id="clothing-options" class="options-grid"></div>
+          </div>
+          <div class="drawer-column">
+            <h4>Toys</h4>
+            <div id="toy-options" class="options-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Game State Controls -->
+      <div id="state-controls-section">
+        <button id="btn-pause" class="btn btn-secondary" type="button">Pause</button>
+        <button id="btn-resume" class="btn btn-secondary" type="button">Resume</button>
+        <button id="btn-end" class="btn btn-danger" type="button">End Session</button>
+      </div>
+
+      <!-- Paused Indicator / Overlay -->
+      <div id="paused-overlay" aria-live="polite">
+        <div class="overlay-card">
+          <h2>Game Paused</h2>
+          <p>Needs and care actions are frozen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ended Screen -->
+    <section id="ended-screen" class="state-view">
+      <div class="screen-card">
+        <h2>Session Ended</h2>
+        <p>You spent quiet time with Mochi in the enchanted forest.</p>
+        <div class="final-score-box">
+          <span class="final-score-label">Final Score:</span>
+          <span id="final-score-value">0</span>
+        </div>
+        <button id="btn-restart" class="btn btn-primary" type="button">Restart</button>
+      </div>
+    </section>
+
+    <!-- Stage 4: Data & Storage Management Footer -->
+    <footer id="data-management-section">
+      <div id="save-status-container">
+        <span id="save-status-indicator" class="save-status-badge">Saved ✓</span>
+      </div>
+      <div id="data-buttons-group">
+        <button id="btn-export-save" class="btn btn-secondary btn-sm" type="button" title="Export pet backup JSON">
+          💾 Export Save
+        </button>
+        <button id="btn-import-save" class="btn btn-secondary btn-sm" type="button" title="Import pet backup JSON">
+          📂 Import Save
+        </button>
+        <input type="file" id="file-import" accept=".json" style="display: none;">
+        <button id="btn-reset-data" class="btn btn-danger-outline btn-sm" type="button" title="Reset all pet data">
+          🗑 Reset Pet
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

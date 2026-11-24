@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex Explorer Multiverse | Rainbow Cyber Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../home/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient Gradient Light Mesh -->
+  <div class="ambient-mesh"></div>
+
+  <!-- Top Sticky Navigation -->
+  <nav class="pokedex-nav">
+    <a href="../home/index.html" class="nav-brand">
+      <div class="brand-icon">⚡</div>
+      <span>POKÉDEX <span class="text-gradient-rainbow">PRISM</span></span>
+    </a>
+
+    <ul class="nav-links-pokedex">
+      <li><a href="../home/index.html" class="nav-link-item">Home Hub</a></li>
+      <li><a href="../game/index.html" class="nav-link-item">Virtual Pet</a></li>
+      <li><a href="../portfolio/index.html" class="nav-link-item">Desk Portfolio</a></li>
+      <li><a href="index.html" class="nav-link-item active">Pokédex</a></li>
+    </ul>
+
+    <div class="nav-tools">
+      <button type="button" class="icon-btn-tool" id="api-sound-btn" title="Toggle Synthesizer Sound">🔇</button>
+      <button type="button" class="icon-btn-tool" id="api-fav-btn" title="View Saved Collection">❤️</button>
+      <button type="button" class="icon-btn-tool" id="api-compare-toggle-btn" title="Toggle Comparison Tray">⚖️</button>
+      <button type="button" class="icon-btn-tool" id="api-history-btn" title="Recently Viewed Specimens">🕒</button>
+      <a href="../home/index.html" class="rainbow-btn btn-pink-grad" style="padding: 0.45rem 1rem; font-size: 0.85rem;">➜ Hub</a>
+    </div>
+  </nav>
+
+  <main class="pokedex-app-container">
+    <!-- Command Control Strip -->
+    <section class="command-strip">
+      <!-- Search Field Row -->
+      <form id="pokedex-search-form" class="search-row" autocomplete="off">
+        <div class="search-field-box">
+          <span class="search-icon-left">🔍</span>
+          <input type="text" id="pokedex-input" placeholder="Search by Pokémon name or Pokédex #ID (e.g. charizard, 25, mewtwo, lucario)..." spellcheck="false" required>
+          <button type="button" id="clear-search-btn" class="clear-search-btn" style="display: none;">✕</button>
+        </div>
+        <button type="submit" class="rainbow-btn btn-cyan-grad" id="btn-submit-search">
+          <span>SCAN</span>
+        </button>
+      </form>
+
+      <!-- Discovery Action Controls -->
+      <div class="action-controls-row">
+        <!-- Discovery & Surprise Buttons -->
+        <div class="control-group">
+          <button type="button" class="rainbow-btn btn-pink-grad" id="btn-random-pokemon">
+            <span>🎲</span> Random Discovery
+          </button>
+          <button type="button" class="rainbow-btn btn-orange-grad" id="btn-surprise-me">
+            <span>✨</span> Surprise Me
+          </button>
+          <button type="button" class="rainbow-btn btn-lime-grad" id="btn-daily-pick">
+            <span>⭐</span> Pokémon of the Day
+          </button>
+        </div>
+
+        <!-- Stepper Controls -->
+        <div class="control-group">
+          <button type="button" class="rainbow-btn btn-pink-grad" id="btn-prev-specimen" title="Previous Pokémon">
+            ◄ PREV
+          </button>
+          <button type="button" class="rainbow-btn btn-cyan-grad" id="btn-next-specimen" title="Next Pokémon">
+            NEXT ►
+          </button>
+        </div>
+      </div>
+
+      <!-- Popular Preset Quick Jump Chips -->
+      <div class="presets-scroller" id="presets-scroller">
+        <button type="button" class="preset-btn" data-id="1">#001 Bulbasaur</button>
+        <button type="button" class="preset-btn" data-id="4">#004 Charmander</button>
+        <button type="button" class="preset-btn" data-id="7">#007 Squirtle</button>
+        <button type="button" class="preset-btn" data-id="25">#025 Pikachu</button>
+        <button type="button" class="preset-btn" data-id="133">#133 Eevee</button>
+        <button type="button" class="preset-btn" data-id="150">#150 Mewtwo</button>
+        <button type="button" class="preset-btn" data-id="94">#094 Gengar</button>
+        <button type="button" class="preset-btn" data-id="448">#448 Lucario</button>
+        <button type="button" class="preset-btn" data-id="658">#658 Greninja</button>
+        <button type="button" class="preset-btn" data-id="1000">#1000 Gholdengo</button>
+      </div>
+    </section>
+
+    <!-- Master Dual Chassis -->
+    <div class="dual-chassis">
+      <!-- Left Chassis: Specimen Visual Hologram, Types, Physical Attributes -->
+      <section class="chassis-panel" id="specimen-panel-left">
+        <!-- Visual Display Stage -->
+        <div class="specimen-stage" id="specimen-stage">
+          <div class="aura-disc" id="aura-disc"></div>
+          <img id="active-pokemon-img" class="specimen-img" src="" alt="Specimen Artwork">
+          
+          <div class="specimen-header">
+            <div class="specimen-id" id="active-pokemon-id">#0001</div>
+            <h2 class="specimen-name text-gradient-rainbow" id="active-pokemon-name">BULBASAUR</h2>
+            <div class="types-rack" id="active-pokemon-types">
+              <!-- Type badges injected here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Physical Metrics Bar -->
+        <div class="specimen-metrics">
+          <div class="metric-unit">
+            <span class="metric-title">HEIGHT</span>
+            <span class="metric-val" id="active-pokemon-height">0.7 m</span>
+          </div>
+          <div class="metric-unit">
+            <span class="metric-title">WEIGHT</span>
+            <span class="metric-val" id="active-pokemon-weight">6.9 kg</span>
+          </div>
+          <div class="metric-unit">
+            <span class="metric-title">BASE EXP</span>
+            <span class="metric-val" id="active-pokemon-exp">64 XP</span>
+          </div>
+        </div>
+
+        <!-- Interactive Specimen Actions -->
+        <div class="specimen-actions-strip">
+          <button type="button" class="rainbow-btn btn-pink-grad" id="btn-toggle-favorite">
+            <span id="fav-icon">🤍</span> <span id="fav-label">Add Favorite</span>
+          </button>
+          <button type="button" class="rainbow-btn btn-cyan-grad" id="btn-add-compare">
+            <span>⚖️</span> Compare Specimen
+          </button>
+          <button type="button" class="rainbow-btn btn-orange-grad" id="btn-share-specimen">
+            <span>📋</span> Copy Specimen Data
+          </button>
+          <button type="button" class="rainbow-btn btn-lime-grad" id="btn-spin-again">
+            <span>🔄</span> Spin Again
+          </button>
+        </div>
+      </section>
+
+      <!-- Right Chassis: Interactive Tabs (Stats, Abilities, Type Matrix, Trivia) -->
+      <section class="chassis-panel" id="specimen-panel-right">
+        <!-- Navigation Tabs -->
+        <div class="tabs-navigation" role="tablist">
+          <button type="button" class="tab-btn active" data-tab="tab-stats">📊 Base Stats</button>
+          <button type="button" class="tab-btn" data-tab="tab-abilities">✨ Abilities</button>
+          <button type="button" class="tab-btn" data-tab="tab-type-matchup">🔥 Type Matrix</button>
+          <button type="button" class="tab-btn" data-tab="tab-audio-cry">🔊 Cry & Sounds</button>
+        </div>
+
+        <!-- Tab 1: Base Stats with Animated Gradient Meters -->
+        <div class="tab-content active" id="tab-stats">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif;">Combat Statistics</h3>
+            <span class="rainbow-badge" id="bst-counter" style="font-size: 0.8rem;">BST: 318</span>
+          </div>
+
+          <div class="stat-box" data-stat="hp">
+            <div class="stat-meta">
+              <span class="stat-label">Hit Points (HP)</span>
+              <span class="stat-value" id="val-hp">45</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-hp" id="bar-hp" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-box" data-stat="attack">
+            <div class="stat-meta">
+              <span class="stat-label">Attack</span>
+              <span class="stat-value" id="val-attack">49</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-atk" id="bar-attack" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-box" data-stat="defense">
+            <div class="stat-meta">
+              <span class="stat-label">Defense</span>
+              <span class="stat-value" id="val-defense">49</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-def" id="bar-defense" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-box" data-stat="special-attack">
+            <div class="stat-meta">
+              <span class="stat-label">Special Attack</span>
+              <span class="stat-value" id="val-special-attack">65</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-spatk" id="bar-special-attack" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-box" data-stat="special-defense">
+            <div class="stat-meta">
+              <span class="stat-label">Special Defense</span>
+              <span class="stat-value" id="val-special-defense">65</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-spdef" id="bar-special-defense" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-box" data-stat="speed">
+            <div class="stat-meta">
+              <span class="stat-label">Speed</span>
+              <span class="stat-value" id="val-speed">45</span>
+            </div>
+            <div class="stat-meter-trough">
+              <div class="stat-meter-fill fill-spd" id="bar-speed" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Abilities Information -->
+        <div class="tab-content" id="tab-abilities">
+          <h3 style="font-family: 'Space Grotesk', sans-serif;">Special Traits & Talents</h3>
+          <div id="abilities-container" style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <!-- Dynamic abilities loaded here -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Type Explorer Matrix inside Pokédex -->
+        <div class="tab-content" id="tab-type-matchup">
+          <h3 style="font-family: 'Space Grotesk', sans-serif;">Filter Specimen by Element</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Click any elemental affinity below to instantly isolate Pokémon belonging to that class:</p>
+          <div class="types-btn-grid" id="api-types-grid" style="margin-top: 0.5rem;">
+            <button type="button" class="type-pill-btn" data-type="fire" style="background: linear-gradient(135deg, #ff4e50, #f9d423);">🔥 Fire</button>
+            <button type="button" class="type-pill-btn" data-type="water" style="background: linear-gradient(135deg, #00c6ff, #0072ff);">💧 Water</button>
+            <button type="button" class="type-pill-btn" data-type="grass" style="background: linear-gradient(135deg, #11998e, #38ef7d);">🌿 Grass</button>
+            <button type="button" class="type-pill-btn" data-type="electric" style="background: linear-gradient(135deg, #fce38a, #f38181); color: #000;">⚡ Electric</button>
+            <button type="button" class="type-pill-btn" data-type="psychic" style="background: linear-gradient(135deg, #eaafc8, #654ea3);">🔮 Psychic</button>
+            <button type="button" class="type-pill-btn" data-type="ice" style="background: linear-gradient(135deg, #89f7fe, #66a6ff); color: #000;">❄️ Ice</button>
+            <button type="button" class="type-pill-btn" data-type="dragon" style="background: linear-gradient(135deg, #536976, #292E49);">🐉 Dragon</button>
+            <button type="button" class="type-pill-btn" data-type="ghost" style="background: linear-gradient(135deg, #4b1248, #f0c27b);">👻 Ghost</button>
+            <button type="button" class="type-pill-btn" data-type="fairy" style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee); color: #000;">✨ Fairy</button>
+            <button type="button" class="type-pill-btn" data-type="fighting" style="background: linear-gradient(135deg, #ff512f, #dd2476);">🥊 Fighting</button>
+            <button type="button" class="type-pill-btn" data-type="poison" style="background: linear-gradient(135deg, #b06ab3, #4568dc);">☠️ Poison</button>
+            <button type="button" class="type-pill-btn" data-type="ground" style="background: linear-gradient(135deg, #d38312, #a83279);">🏜️ Ground</button>
+            <button type="button" class="type-pill-btn" data-type="flying" style="background: linear-gradient(135deg, #4ca1af, #c4e0e5); color: #000;">🪽 Flying</button>
+            <button type="button" class="type-pill-btn" data-type="bug" style="background: linear-gradient(135deg, #9198e5, #e66465);">🐛 Bug</button>
+            <button type="button" class="type-pill-btn" data-type="rock" style="background: linear-gradient(135deg, #ba8b02, #181818);">🪨 Rock</button>
+            <button type="button" class="type-pill-btn" data-type="steel" style="background: linear-gradient(135deg, #8e9eab, #eef2f3); color: #000;">⚙️ Steel</button>
+            <button type="button" class="type-pill-btn" data-type="dark" style="background: linear-gradient(135deg, #232526, #414345);">🌑 Dark</button>
+            <button type="button" class="type-pill-btn" data-type="normal" style="background: linear-gradient(135deg, #bdc3c7, #2c3e50);">⚪ Normal</button>
+          </div>
+        </div>
+
+        <!-- Tab 4: Cry Audio Synthesizer -->
+        <div class="tab-content" id="tab-audio-cry">
+          <h3 style="font-family: 'Space Grotesk', sans-serif;">Sonic Cry Synthesis</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+            Listen to official specimen audio telemetry or trigger synthesizer sonic wave generators.
+          </p>
+          <div style="display: flex; gap: 0.85rem; margin-top: 1rem; flex-wrap: wrap;">
+            <button type="button" class="rainbow-btn btn-pink-grad" id="btn-play-cry">
+              <span>🔊</span> Play Specimen Cry
+            </button>
+            <button type="button" class="rainbow-btn btn-cyan-grad" id="btn-synth-sweep">
+              <span>⚡</span> Synthesizer Sweep
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Persistent Comparison Tray -->
+  <aside class="comparison-tray" id="comparison-tray">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <strong style="font-family: 'Space Grotesk', sans-serif;">⚖️ Comparison Dock</strong>
+      <div class="tray-slots">
+        <div class="compare-slot" id="slot-1">Slot 1 Empty</div>
+        <div class="compare-slot" id="slot-2">Slot 2 Empty</div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 0.6rem;">
+      <button type="button" class="rainbow-btn btn-lime-grad" id="btn-run-comparison">Compare Now</button>
+      <button type="button" class="rainbow-btn btn-orange-grad" id="btn-clear-tray">Clear Dock</button>
+      <button type="button" class="icon-btn-tool" id="btn-close-tray" title="Close comparison tray">✕</button>
+    </div>
+  </aside>
+
+  <!-- Interactive Comparison Modal -->
+  <div class="modal-overlay" id="modal-comparison">
+    <div class="modal-box" style="max-width: 820px;">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <h2 class="text-gradient-rainbow">Head-to-Head Specimen Analysis</h2>
+      <div id="comparison-results-body" style="margin-top: 1.5rem;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Recently Viewed Modal -->
+  <div class="modal-overlay" id="modal-recent">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 class="text-gradient-cyan">🕒 Recently Viewed Specimens</h2>
+        <button type="button" class="btn-rainbow-sm" id="btn-clear-recent">Clear History</button>
+      </div>
+      <div id="recent-list-container" style="margin-top: 1.5rem;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Universal Specimen Inspect Modal -->
+  <div class="modal-overlay" id="modal-specimen">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <div id="modal-specimen-body">
+        <h2 id="modal-specimen-title" class="text-gradient-rainbow">Inspecting Specimen</h2>
+        <div id="modal-specimen-content" style="margin-top: 1.5rem; text-align: center;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../home/script.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

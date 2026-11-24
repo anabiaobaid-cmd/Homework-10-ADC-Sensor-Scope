@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-Channel Live Sensor Scope and Noise Filter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0d1117; /* GitHub dark */
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+        header {
+            background: #161b22;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 2rem; }
+        main { padding: 2rem; max-width: 900px; margin: auto; }
+        .section {
+            background: #161b22;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .section h2 { margin-top: 0; color: #58a6ff; }
+        ul { padding-left: 1.2rem; }
+        a.button {
+            display: inline-block;
+            margin: 0.5rem 0.2rem;
+            padding: 0.6rem 1.2rem;
+            background: #238636;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        a.button:hover { background: #2ea043; }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>4-Channel Live Sensor Scope &amp; Noise Filter</h1>
+    </header>
+    <main>
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p><strong>Technology:</strong> ADC (Analog‑to‑Digital Conversion)</p>
+            <p><strong>Hardware:</strong> ESP32, analog joystick, photoresistor, NTC temperature sensor, potentiometer.</p>
+        </section>
+        <section class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Five analog input channels.</li>
+                <li>Calibrated millivolt readings using <code>analogReadMilliVolts()</code>.</li>
+                <li>Rolling‑average noise filtering.</li>
+                <li>Joystick dead‑zone handling.</li>
+                <li>Live Serial Plotter output for real‑time monitoring.</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>ADC Technology Deep Dive</h2>
+            <p>The ESP32’s built‑in SAR ADC samples each analog input at up to 6 kS/s with 12‑bit resolution. By scaling the raw counts with the reference voltage and the chosen attenuation, the <code>analogReadMilliVolts()</code> helper returns a calibrated millivolt value, simplifying downstream calculations. The rolling‑average filter smooths high‑frequency noise while preserving rapid changes, which is critical for joystick positioning and light‑sensor responsiveness. Attenuation settings are configured per‑channel to match each sensor’s voltage range, ensuring optimal signal‑to‑noise ratio.</p>
+        </section>
+        <section class="section">
+            <h2>Live Demo</h2>
+            <a class="button" href="https://wokwi.com/projects/481598902226788353" target="_blank" rel="noopener">Open Wokwi Simulation</a>
+            <a class="button" href="/home/">← Back to Home</a>
+        </section>
+        <!-- Proof screenshot placeholder (none found) -->
+    </main>
+    <footer>
+        <p>© 2026 CS CRP – Embedded Sensor Scope Project</p>
+    </footer>
+</body>
+</html>

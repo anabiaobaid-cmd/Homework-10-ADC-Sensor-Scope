@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: heuser-cs-crp-homework-9
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0

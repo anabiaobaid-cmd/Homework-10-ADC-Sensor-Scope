@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS CRP Rainbow Hub | Homework 9</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Animated Mesh Background & Floating Gradient Blobs -->
+  <div class="mesh-bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="top-navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-symbol">🌈</div>
+      <span>PRISM <span class="text-gradient-rainbow">HUB</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="../game/index.html" class="nav-link">Virtual Pet (HW6)</a></li>
+      <li><a href="../portfolio/index.html" class="nav-link">Desk Portfolio (HW8)</a></li>
+      <li><a href="../api/index.html" class="nav-link">Pokédex Explorer</a></li>
+    <li><a href="../embedded/index.html" class="nav-link">Embedded Sensor Scope</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button type="button" class="icon-btn" id="sound-toggle-btn" title="Toggle Sound Synth">🔇</button>
+      <button type="button" class="icon-btn" id="palette-shuffle-btn" title="Shuffle Theme Gradients">🎨</button>
+      <a href="../api/index.html" class="btn-rainbow-sm">⚡ Launch Pokédex</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="rainbow-badge">
+        <span>✨ CS CRP Coursework • Homework 9 ✨</span>
+      </div>
+      <h1 class="hero-title">
+        Maximum <span class="text-gradient-rainbow">Vibrancy</span> Interactive <span class="text-gradient-cyan">Multiverse</span>
+      </h1>
+      <p class="hero-subtitle">
+        A maximalist gradient universe connecting your enchanted virtual pet, immersive creative desk portfolio, and a high-performance live Pokédex Explorer with full interactive discovery tooling.
+      </p>
+
+      <!-- Primary Interactive Action Buttons Strip -->
+      <div class="action-bar-strip">
+        <a href="../api/index.html" class="action-btn btn-grad-1" id="btn-explore-pokedex">
+          <span>🔍</span> Explore Pokédex
+        </a>
+        <button type="button" class="action-btn btn-grad-2" id="btn-quick-discover">
+          <span>🎲</span> Discover a Pokémon
+        </button>
+        <button type="button" class="action-btn btn-grad-3" id="btn-daily-discovery">
+          <span>⭐</span> Daily Discovery
+        </button>
+        <button type="button" class="action-btn btn-grad-4" id="btn-explore-types">
+          <span>🔥</span> Explore Types
+        </button>
+        <button type="button" class="action-btn btn-grad-5" id="btn-open-collection">
+          <span>❤️</span> My Collection
+        </button>
+        <button type="button" class="action-btn btn-grad-6" id="btn-fun-facts">
+          <span>💡</span> Fun Facts
+        </button>
+        <button type="button" class="action-btn btn-grad-1" id="btn-about-project">
+          <span>ℹ️</span> About Project
+        </button>
+      </div>
+    </header>
+
+    <div class="rainbow-divider"></div>
+
+    <!-- Core 3 Projects Grid -->
+    <main class="core-grid">
+      <!-- 1. Virtual Pet Simulator (HW6) -->
+      <a href="../game/index.html" class="rainbow-card card-game" id="card-game-link">
+        <div class="card-top">
+          <div class="card-icon-pill">🐰</div>
+          <span class="card-badge">Homework 6</span>
+        </div>
+        <div class="card-body">
+          <h3 class="text-gradient-cyan">Mochi's Pet Simulator</h3>
+          <p>
+            Enchanted forest companion with interactive state machines, canvas rendering, audio synthesis, hunger/energy meters, and mini-games.
+          </p>
+        </div>
+        <div class="card-footer">
+          <span style="color: #76ff03;">Launch Game Simulator</span>
+          <span>➜</span>
+        </div>
+      </a>
+
+      <!-- 2. Creative Desk Portfolio (HW8) -->
+      <a href="../portfolio/index.html" class="rainbow-card card-portfolio" id="card-portfolio-link">
+        <div class="card-top">
+          <div class="card-icon-pill">🎨</div>
+          <span class="card-badge">Homework 8</span>
+        </div>
+        <div class="card-body">
+          <h3 style="color: #ffee00;">The Creative Desk</h3>
+          <p>
+            An interactive physical desktop metaphor with tactile objects, project showcases, aspirations, and link to Homework 7.
+          </p>
+        </div>
+        <div class="card-footer">
+          <span style="color: #ffaa00;">Explore Desk Portfolio</span>
+          <span>➜</span>
+        </div>
+      </a>
+
+      <!-- 3. Cyber Pokédex Explorer -->
+      <a href="../api/index.html" class="rainbow-card card-api" id="card-api-link">
+        <div class="card-top">
+          <div class="card-icon-pill">⚡</div>
+          <span class="card-badge">New Feature</span>
+        </div>
+        <div class="card-body">
+          <h3 class="text-gradient-rainbow">Pokédex Explorer</h3>
+          <p>
+            Cybernetic specimen analyzer with live PokéAPI integration, animated stat meters, random generator, abilities, and type filtering.
+          </p>
+        </div>
+        <div class="card-footer">
+          <span style="color: #ff007f;">Open Cyber Pokédex</span>
+          <span>➜</span>
+        </div>
+      </a>
+    </main>
+
+    <!-- Interactive Section: Type Explorer Quick Launch -->
+    <section class="showcase-section" id="section-type-explorer">
+      <div class="section-head">
+        <div>
+          <h2>⚡ Elemental <span class="text-gradient-rainbow">Type Matrix</span></h2>
+          <p class="section-subtitle">Click any elemental energy button to query live PokéAPI specimens for that classification.</p>
+        </div>
+        <button type="button" class="btn-rainbow-sm" id="btn-random-type">🎲 Pick Random Type</button>
+      </div>
+
+      <div class="types-btn-grid" id="home-types-grid">
+        <!-- 18 elemental buttons generated or styled -->
+        <button type="button" class="type-pill-btn" data-type="fire" style="background: linear-gradient(135deg, #ff4e50, #f9d423);">🔥 Fire</button>
+        <button type="button" class="type-pill-btn" data-type="water" style="background: linear-gradient(135deg, #00c6ff, #0072ff);">💧 Water</button>
+        <button type="button" class="type-pill-btn" data-type="grass" style="background: linear-gradient(135deg, #11998e, #38ef7d);">🌿 Grass</button>
+        <button type="button" class="type-pill-btn" data-type="electric" style="background: linear-gradient(135deg, #fce38a, #f38181); color: #000;">⚡ Electric</button>
+        <button type="button" class="type-pill-btn" data-type="psychic" style="background: linear-gradient(135deg, #eaafc8, #654ea3);">🔮 Psychic</button>
+        <button type="button" class="type-pill-btn" data-type="ice" style="background: linear-gradient(135deg, #89f7fe, #66a6ff); color: #000;">❄️ Ice</button>
+        <button type="button" class="type-pill-btn" data-type="dragon" style="background: linear-gradient(135deg, #536976, #292E49);">🐉 Dragon</button>
+        <button type="button" class="type-pill-btn" data-type="ghost" style="background: linear-gradient(135deg, #4b1248, #f0c27b);">👻 Ghost</button>
+        <button type="button" class="type-pill-btn" data-type="fairy" style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee); color: #000;">✨ Fairy</button>
+        <button type="button" class="type-pill-btn" data-type="fighting" style="background: linear-gradient(135deg, #ff512f, #dd2476);">🥊 Fighting</button>
+        <button type="button" class="type-pill-btn" data-type="poison" style="background: linear-gradient(135deg, #b06ab3, #4568dc);">☠️ Poison</button>
+        <button type="button" class="type-pill-btn" data-type="ground" style="background: linear-gradient(135deg, #d38312, #a83279);">🏜️ Ground</button>
+        <button type="button" class="type-pill-btn" data-type="flying" style="background: linear-gradient(135deg, #4ca1af, #c4e0e5); color: #000;">🪽 Flying</button>
+        <button type="button" class="type-pill-btn" data-type="bug" style="background: linear-gradient(135deg, #9198e5, #e66465);">🐛 Bug</button>
+        <button type="button" class="type-pill-btn" data-type="rock" style="background: linear-gradient(135deg, #ba8b02, #181818);">🪨 Rock</button>
+        <button type="button" class="type-pill-btn" data-type="steel" style="background: linear-gradient(135deg, #8e9eab, #eef2f3); color: #000;">⚙️ Steel</button>
+        <button type="button" class="type-pill-btn" data-type="dark" style="background: linear-gradient(135deg, #232526, #414345);">🌑 Dark</button>
+        <button type="button" class="type-pill-btn" data-type="normal" style="background: linear-gradient(135deg, #bdc3c7, #2c3e50);">⚪ Normal</button>
+      </div>
+    </section>
+
+    <!-- Interactive Mini-Tools: Fun Facts & Daily Discovery -->
+    <div class="interactive-dock">
+      <!-- Fun Facts Dock -->
+      <div class="dock-card">
+        <div>
+          <span class="card-badge" style="background: var(--grad-pink-purple);">Trivia & Lore</span>
+          <h4 style="margin-top: 0.8rem;">Pokémon Lore Generator</h4>
+          <div class="dock-content" id="trivia-text-box">
+            Did you know? Pikachu and Meowth have reversed Pokédex numbers (25 and 52), reflecting the classic rivalry between a mouse and a cat!
+          </div>
+        </div>
+        <div class="dock-actions">
+          <button type="button" class="action-btn btn-grad-1" id="btn-next-trivia">
+            <span>✨</span> Next Fun Fact
+          </button>
+          <button type="button" class="action-btn btn-grad-3" id="btn-copy-trivia">
+            <span>📋</span> Copy Fact
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Discovery Dock -->
+      <div class="dock-card">
+        <div>
+          <span class="card-badge" style="background: var(--grad-cyan-blue);">Live PokéAPI Radar</span>
+          <h4 style="margin-top: 0.8rem;">Instant Radar Scanner</h4>
+          <div class="dock-content" id="radar-specimen-box">
+            Ready to scan regional frequencies. Press the scan button to ping PokéAPI for a live specimen preview.
+          </div>
+        </div>
+        <div class="dock-actions">
+          <button type="button" class="action-btn btn-grad-2" id="btn-dock-scan">
+            <span>⚡</span> Scan Radar
+          </button>
+          <a href="../api/index.html" class="action-btn btn-grad-5" id="btn-dock-goto-api">
+            <span>🚀</span> Open Full Hub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modals -->
+  <!-- 1. Universal Specimen Detail Modal -->
+  <div class="modal-overlay" id="modal-specimen">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <div id="modal-specimen-body">
+        <h2 id="modal-specimen-title" class="text-gradient-rainbow">Loading Specimen...</h2>
+        <div id="modal-specimen-content" style="margin-top: 1.5rem; text-align: center;">
+          <p>Interfacing with PokéAPI neural streams...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. About Project Modal -->
+  <div class="modal-overlay" id="modal-about">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <h2 class="text-gradient-rainbow">About CS CRP Homework 9</h2>
+      <div style="margin-top: 1.5rem; line-height: 1.7; color: var(--text-muted);">
+        <p>This project is a <strong>Full-Stack Python Flask</strong> unified coursework hub that brings together:</p>
+        <ul style="margin: 1rem 0 1rem 1.5rem; color: #fff;">
+          <li><strong>Homework 6</strong>: Mochi's Virtual Pet Simulator with canvas animations and state decay.</li>
+          <li><strong>Homework 8</strong>: The Creative Desk interactive spatial portfolio.</li>
+          <li><strong>Pokédex Explorer</strong>: A cybernetic, gradient-rich PokéAPI discovery engine.</li>
+        <li><a href="../embedded/index.html" class="nav-link">Embedded Sensor Scope</a></li>
+    </ul>
+        <p>Built with vanilla JavaScript, modern responsive CSS, and deployed with Gunicorn on Render Free.</p>
+        <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem;">
+          <a href="../api/index.html" class="action-btn btn-grad-1">Explore Pokédex</a>
+          <button type="button" class="action-btn btn-grad-3" data-close-modal>Close Window</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. My Collection Modal -->
+  <div class="modal-overlay" id="modal-collection">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" data-close-modal>✕</button>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 class="text-gradient-pink">⭐ Saved Pokémon Collection</h2>
+        <button type="button" class="btn-rainbow-sm" id="btn-clear-collection">Clear All</button>
+      </div>
+      <div id="collection-list-container" style="margin-top: 1.5rem;">
+        <p style="color: var(--text-muted);">No Pokémon saved yet. Open the Pokédex and press the heart icon to add favorites!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Floating Action Button for Instant Discovery -->
+  <div class="fab-container">
+    <button type="button" class="fab-main" id="fab-random-trigger" title="Instant Surprise Discovery!">🎲</button>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="rainbow-badge">
+        <span>Prism Multiverse • Flask + PokéAPI</span>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="../game/index.html" class="footer-link">HW6 Pet Simulator</a>
+        <a href="../portfolio/index.html" class="footer-link">HW8 Desk Portfolio</a>
+        <a href="../api/index.html" class="footer-link">Pokédex Explorer</a>
+        <button type="button" id="footer-fact-btn" class="footer-link" style="background: none; border: none; cursor: pointer;">Random Fact</button>
+        <button type="button" id="footer-about-btn" class="footer-link" style="background: none; border: none; cursor: pointer;">About</button>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.88rem;">
+        Crafted with pure HTML, CSS, JavaScript, Flask and high-contrast rainbow gradients.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Creative Desk | My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="desk">
+    <div class="intro">
+      <p class="eyebrow">A LITTLE WORLD OF MY OWN</p>
+      <h1>The Creative Desk<span>.</span></h1>
+      <p>Curiosity lives here. Explore my world by clicking the objects.</p>
+    </div>
+
+    <div class="workspace">
+
+      <button class="object polaroid" onclick="openPage('about')">
+        <div class="photo">
+          <img src="assets/profile.jpg" alt="My photograph">
+        </div>
+        <span>ME, MYSELF & I</span>
+      </button>
+
+      <button class="object notebook" onclick="openPage('projects')">
+        <span class="emoji">📓</span>
+        <strong>My Projects</strong>
+        <small>Things I've made</small>
+      </button>
+
+      <button class="object trophy" onclick="openPage('achievements')">
+        <span class="emoji">🏆</span>
+        <strong>Achievements</strong>
+        <small>Little victories</small>
+      </button>
+
+      <button class="object bulb" onclick="openPage('dreams')">
+        <span class="emoji">💡</span>
+        <strong>Dreams & Ideas</strong>
+        <small>What's next?</small>
+      </button>
+
+      <a class="object laptop" href="https://anabiaobaid-cmd.github.io/Heuser-CS_CRP-Homework_6/" target="_blank">
+        <span class="emoji">💻</span>
+        <strong>My Previous Creation</strong>
+        <small>Visit Homework 7 ↗</small>
+      </a>
+
+    </div>
+
+    <p class="instruction">✦ Click an object to explore ✦</p>
+    <p class="concept">
+      This portfolio is designed as an interactive creative desk rather
+      than a conventional website. Instead of menus and navigation bars,
+      visitors explore different objects to discover my work, experiences
+      and aspirations.
+    </p>
+  </main>
+
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <button class="close" onclick="closePage()">✕</button>
+      <div id="popup-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
